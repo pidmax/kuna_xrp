@@ -1,0 +1,172 @@
+<html>
+<head>
+  <style>
+th {
+  background-color: #ddd
+}
+tr:nth-child(odd) {
+  background: #eee
+}
+td:hover {
+  cursor: pointer;
+  background-color: lightblue;
+}
+td, th {
+    
+    text-align: left;
+    padding: 8px;
+}
+
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border-color: grey;
+    padding-top:5px;
+}
+ .settings{
+    background-color: #eee; 
+    padding:8px; 
+    float:left;
+    border-radius:8px;
+  }
+  #datePicker{
+    width:330px;
+  }
+  #descending{
+    width:100px;
+    margin:2px 0px 0px 6px;
+  }
+  #limit{
+    width:100px;
+    margin:2px 0px 0px 6px;
+  }
+  #btn{
+    background-color: #eee; 
+    padding:8px; 
+    width:50px;
+    float:left;
+    margin:2px 0px 0px 6px;
+    border-width:5px;
+    border-radius:8px;
+    border-color: #ddd;
+    text-align: center;
+  }
+  #btn:hover{
+    background-color: #ddd; 
+    cursor:pointer;
+  }
+</style>
+<script>
+function createTable(tableData) {
+var table = document.createElement('table');
+var tableBody = document.createElement('tbody');
+var headers = ["ledger", "destination", "hash", "amount", "date", "time"];
+var header = document.createElement('tr');
+headers.forEach(function(cellData) {
+  var cell = document.createElement('th');
+  cell.appendChild(document.createTextNode(cellData));
+  header.appendChild(cell);
+ tableBody.appendChild(header);  
+});
+tableData.forEach(function(rowData) {
+  var row = document.createElement('tr');
+  rowData.forEach(function(cellData) {
+    var cell = document.createElement('td');
+    cell.appendChild(document.createTextNode(cellData));
+    row.appendChild(cell);
+  });
+   tableBody.appendChild(row);  
+  });
+  table.appendChild(tableBody);
+  document.body.appendChild(table);
+}
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+function getResponse(url){
+var table = [];
+var response = JSON.parse(httpGet(url));
+response.transactions.forEach(function(el) {
+ if (el.tx.Destination==="rMtb2JEX8xmcgSKxCB7aZPDyzyVhbM2RzV") {
+//date
+//hash
+//ledger_index
+//tx.Account
+//tx.Amount
+//tx.Destination
+//tx.DestinationTag
+//tx.Fee
+//tx.Flags
+//tx.Sequence
+//tx.SigningPubKey
+//tx.TransactionType
+//tx.TxnSignature
+    table.push([el.ledger_index,el.tx.DestinationTag,el.hash,parseFloat(el.tx.Amount)/1000000,new Date(el.date).toLocaleDateString(),new Date(el.date).toLocaleTimeString()]);
+}
+})
+if(document.getElementsByTagName("table")[0]) document.getElementsByTagName("table")[0].remove();
+createTable(table);
+};
+function switchDateStatus(){
+  var s = document.getElementById("start");
+  var e = document.getElementById("end");
+  s.disabled = !s.disabled;
+  e.disabled  = !e.disabled;
+}
+function openXRP(){
+  var switcher = document.getElementById("dateSwitch").checked;
+  var start = "";
+  var end = "";
+  descending = document.getElementById("descendingSwitch").checked;
+  limit = parseInt(document.getElementById("limitValue").value);
+  if(switcher){
+  start = "&start=" + new Date(document.getElementById("start").value).toISOString();
+  end = "&end=" + new Date(document.getElementById("end").value).toISOString();
+}
+  return "https://data.ripple.com/v2/accounts/rMtb2JEX8xmcgSKxCB7aZPDyzyVhbM2RzV/transactions?descending="+descending+"&limit="+limit+start+end;
+  }
+</script>
+</head>
+<body>
+  <div id="datePicker" class="settings">
+  <input type="checkbox" id="dateSwitch" checked onclick="switchDateStatus()"><input type="date" id="start"> : <input onclick="setMax()" type="date" id="end">
+  <script>
+    var today = new Date();
+    today.setDate(today.getDate() + 1);
+    var yesterday = new Date;
+    yesterday.setDate(yesterday.getDate() - 1);
+  document.getElementById('start').valueAsDate = yesterday;
+  document.getElementById('end').valueAsDate = today;
+  document.getElementById('end').setAttribute("max", today.toISOString().split('T')[0]);
+  function setMax(){
+    document.getElementById('start').setAttribute("max", document.getElementById('end').valueAsDate.toISOString().split('T')[0]);
+  }
+
+</script>
+</div>
+<div id="descending" class="settings">
+  <input type="checkbox" id="descendingSwitch" checked > Descending
+</div>
+<div id="limit" class="settings">
+Limit: <input type="number" id="limitValue" value="500" style="width:50px">
+</div>
+<div id="btn" onclick="getResponse(openXRP())">Get</div>
+<script>getResponse(openXRP());</script>
+</body>
+</html>
