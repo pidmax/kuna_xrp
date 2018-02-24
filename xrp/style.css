@@ -1,0 +1,66 @@
+th {
+  background-color: #ddd
+}
+tr:nth-child(odd) {
+  background: #eee
+}
+td:hover {
+  cursor: pointer;
+  background-color: lightblue;
+}
+td, th {
+    
+    text-align: left;
+    padding: 8px;
+}
+
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border-color: grey;
+    padding-top:5px;
+}
+ .settings{
+    background-color: #eee; 
+    padding:8px; 
+    float:left;
+    border-radius:8px;
+  }
+  #datePicker{
+    width:330px;
+  }
+  #descending{
+    width:100px;
+    margin:2px 0px 0px 6px;
+  }
+  #limit{
+    width:100px;
+    margin:2px 0px 0px 6px;
+  }
+  #btn{
+    background-color: #eee; 
+    padding:8px; 
+    width:50px;
+    float:left;
+    margin:2px 0px 0px 6px;
+    border-width:5px;
+    border-radius:8px;
+    border-color: #ddd;
+    text-align: center;
+  }
+  #btn:hover{
+    background-color: #ddd; 
+    cursor:pointer;
+  }
