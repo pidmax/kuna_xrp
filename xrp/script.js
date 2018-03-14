@@ -32,7 +32,7 @@ function getResponse(url){
 var table = [];
 var response = JSON.parse(httpGet(url));
 response.transactions.forEach(function(el) {
- if (el.tx.Destination==="rMtb2JEX8xmcgSKxCB7aZPDyzyVhbM2RzV") {
+ if (el.tx.Destination===address) {
 //date
 //hash
 //ledger_index
@@ -58,7 +58,7 @@ function switchDateStatus(){
   s.disabled = !s.disabled;
   e.disabled  = !e.disabled;
 }
-function openXRP(){
+function openXRP(address){
   var switcher = document.getElementById("dateSwitch").checked;
   var start = "";
   var end = "";
@@ -68,5 +68,5 @@ function openXRP(){
   start = "&start=" + new Date(document.getElementById("start").value).toISOString();
   end = "&end=" + new Date(document.getElementById("end").value).toISOString();
 }
-  return "https://data.ripple.com/v2/accounts/rMtb2JEX8xmcgSKxCB7aZPDyzyVhbM2RzV/transactions?descending="+descending+"&limit="+limit+start+end;
+  return "https://data.ripple.com/v2/accounts/"+address+"/transactions?descending="+descending+"&limit="+limit+start+end;
   }
