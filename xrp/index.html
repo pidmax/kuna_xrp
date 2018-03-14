@@ -8,6 +8,7 @@
   <div id="datePicker" class="settings">
   <input type="checkbox" id="dateSwitch" checked onclick="switchDateStatus()"><input type="date" id="start"> : <input onclick="setMax()" type="date" id="end">
   <script>
+    var address = 'rMtb2JEX8xmcgSKxCB7aZPDyzyVhbM2RzV';
     var today = new Date();
     today.setDate(today.getDate() + 1);
     var yesterday = new Date;
@@ -27,7 +28,7 @@
 <div id="limit" class="settings">
 Limit: <input type="number" id="limitValue" value="500" style="width:50px">
 </div>
-<div id="btn" onclick="getResponse(openXRP('rMtb2JEX8xmcgSKxCB7aZPDyzyVhbM2RzV'))">Get</div>
-<script>getResponse(openXRP('rMtb2JEX8xmcgSKxCB7aZPDyzyVhbM2RzV'));</script>
+<div id="btn" onclick="getResponse(openXRP(address))">Get</div>
+<script>getResponse(openXRP(address));</script>
 </body>
 </html>
