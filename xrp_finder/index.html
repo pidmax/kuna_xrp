@@ -11,6 +11,7 @@
 	var f = 0;
 	var timer = setInterval(function(){
 		i++;
+		document.getElementById('progress').innerHTML = "Iteration: "+i + "<br>Found: " + f;
 		news = getValids();
 		news.forEach(function(el){
 			if (!olds.includes(el)) {
@@ -20,7 +21,6 @@
 				window.open('https://xrpcharts.ripple.com/#/transactions/'+el,'_blank');
 				f++;
 			}
-			document.getElementById('progress').innerHTML = "Iteration: "+i + "<br>Found: " + f;
 		});
 	},1000);
 	</script>
