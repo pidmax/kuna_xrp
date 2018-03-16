@@ -1,6 +1,28 @@
 <html>
-<head><title>XRP Finder</title></head>
+<head>
+	<title>XRP Finder</title>
+	<script type="text/javascript" src="script.js"></script>
+</head>
 <body>
+	<script type="text/javascript">
+	var olds = [];
+	var news = [];
+	var i = 0;
+	var timer = setInterval(function(){
+		news = getValids();
+		news.forEach(function(el){
+			if (!olds.includes(el)) {
+				olds.push(el);
+				console.log (olds.includes(el));
+				new Audio('https://pidmax.github.io/xrp/found.mp3').play();
+				window.open('https://xrpcharts.ripple.com/#/transactions/'+el,'_blank');
+				i++;
+				document.getElementById('progress').innerHTML = "Iteration: "+i;
+				
+			}
+		});
+	},1000);
+	</script>
 	<div id="progress"></div>
 </body>
 </html>
