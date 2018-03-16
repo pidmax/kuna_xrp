@@ -33,6 +33,9 @@ var table = [];
 var response = JSON.parse(httpGet(url));
 response.transactions.forEach(function(el) {
  if (el.tx.Destination===address) {
+
+
+  
 //date
 //hash
 //ledger_index
