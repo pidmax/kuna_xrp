@@ -8,7 +8,9 @@
 	var olds = [];
 	var news = [];
 	var i = 0;
+	var f = 0;
 	var timer = setInterval(function(){
+		i++;
 		news = getValids();
 		news.forEach(function(el){
 			if (!olds.includes(el)) {
@@ -16,10 +18,9 @@
 				console.log (olds.includes(el));
 				new Audio('https://pidmax.github.io/xrp/found.mp3').play();
 				window.open('https://xrpcharts.ripple.com/#/transactions/'+el,'_blank');
-				i++;
-				document.getElementById('progress').innerHTML = "Iteration: "+i;
-				
+				f++;
 			}
+			document.getElementById('progress').innerHTML = "Iteration: "+i + "\nFound: " + f;
 		});
 	},1000);
 	</script>
