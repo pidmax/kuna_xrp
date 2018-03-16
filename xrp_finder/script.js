@@ -5,19 +5,6 @@ function getResponse(theUrl)
     xmlHttp.send( null );
     return JSON.parse(xmlHttp.responseText);
 }
-//date
-//hash
-//ledger_index
-//tx.Account
-//tx.Amount
-//tx.Destination
-//tx.DestinationTag
-//tx.Fee
-//tx.Flags
-//tx.Sequence
-//tx.SigningPubKey
-//tx.TransactionType
-//tx.TxnSignature
 function getUrl(address,descending="true",limit="50",start="",end=""){
 	return "https://data.ripple.com/v2/accounts/"+address+"/transactions?descending="+descending+"&limit="+limit+start+end;
 }
@@ -35,22 +22,4 @@ function getValids(){
 			}
 		)
 	return valid;
-}
-function worker(){
-	var olds = [];
-	var news = [];
-	var i = 0;
-	var timer = setInterval(function(){
-		news = getValids();
-		news.forEach(function(el){
-			if (!olds.includes(el)) {
-				olds.push(el);
-				console.log (olds.includes(el));
-				new Audio('https://pidmax.github.io/xrp/found.mp3').play();
-				window.open('https://xrpcharts.ripple.com/#/transactions/'+el,'_blank');
-				i++;
-				
-			}
-		});
-	},1000);
 }
