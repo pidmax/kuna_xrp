@@ -70,6 +70,6 @@ function openXRP(address){
   if(switcher){
   start = "&start=" + new Date(document.getElementById("start").value).toISOString();
   end = "&end=" + new Date(document.getElementById("end").value).toISOString();
-}
+ }
   return "https://data.ripple.com/v2/accounts/"+address+"/transactions?descending="+descending+"&limit="+limit+start+end;
-  }
+}
