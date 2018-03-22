@@ -13,7 +13,7 @@
 	var remain = seconds;
 	setInterval(function(){
 		remain-=0.1;
-		if (remain<=0) remain = period;
+		if (remain<=0) remain = seconds;
 		document.getElementById('timer').innerHTML = "Remain: "+ remain + "s";
 	},100);
 	var timer = setInterval(function(){
