@@ -10,8 +10,8 @@
 	var i = 0;
 	var f = 0;
 	var seconds = 30;
-	var timer = seconds;
-	setInterval(function(){timer-=0.1;if (timer<=0) timer = period},100);
+	var remain = seconds;
+	setInterval(function(){remain-=0.1;if (remain<=0) remain = period},100);
 	var timer = setInterval(function(){
 		i++;
 		document.getElementById('progress').innerHTML = "Iteration: "+i + "<br>Found: " + f;
