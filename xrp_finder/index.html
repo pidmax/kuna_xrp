@@ -9,9 +9,13 @@
 	var news = [];
 	var i = 0;
 	var f = 0;
+	var seconds = 30;
+	var timer = seconds;
+	setInterval(function(){timer-=0.1;if (timer<=0) timer = period},100);
 	var timer = setInterval(function(){
 		i++;
 		document.getElementById('progress').innerHTML = "Iteration: "+i + "<br>Found: " + f;
+		document.getElementById('timer').innerHTML = "Remain: "+ timer + "s";
 		news = getValids();
 		news.forEach(function(el){
 			if (!olds.includes(el)) {
@@ -22,8 +26,9 @@
 				f++;
 			}
 		});
-	},1000*30);
+	},1000*seconds);
 	</script>
 	<div id="progress"></div>
+	<div id="timer"></div>
 </body>
 </html>
