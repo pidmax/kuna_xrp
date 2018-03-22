@@ -11,11 +11,15 @@
 	var f = 0;
 	var seconds = 30;
 	var remain = seconds;
-	setInterval(function(){remain-=0.1;if (remain<=0) remain = period},100);
+	setInterval(function(){
+		remain-=0.1;
+		if (remain<=0) remain = period;
+		document.getElementById('timer').innerHTML = "Remain: "+ remain + "s";
+	},100);
 	var timer = setInterval(function(){
 		i++;
 		document.getElementById('progress').innerHTML = "Iteration: "+i + "<br>Found: " + f;
-		document.getElementById('timer').innerHTML = "Remain: "+ timer + "s";
+		
 		news = getValids();
 		news.forEach(function(el){
 			if (!olds.includes(el)) {
