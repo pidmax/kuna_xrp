@@ -14,7 +14,7 @@
 	setInterval(function(){
 		remain-=0.1;
 		if (remain<=0) remain = seconds;
-		document.getElementById('timer').innerHTML = "Remain: "+ remain + "s";
+		document.getElementById('timer').innerHTML = "Remain: "+ remain.toFixed(1) + "s";
 	},100);
 	var timer = setInterval(function(){
 		i++;
