@@ -26,7 +26,7 @@ function getValids(){
 			}
 		)
 
-	};
+	});
 	
 	return valid;
 }
