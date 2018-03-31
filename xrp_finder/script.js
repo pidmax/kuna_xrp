@@ -20,7 +20,7 @@ function getValids(){
 			function(el){
 				if(
 					(el.tx.Destination===xrpAddress[xrpAddress.indexOf(el.tx.Destination)])&&
-					((""+el.tx.DestinationTag).length<6)
+					((""+el.tx.DestinationTag).length<12)
 				) 
 				valid.push(el.hash);
 			}
