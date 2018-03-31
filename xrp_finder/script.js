@@ -10,7 +10,7 @@ function getUrl(address,descending="true",limit="50",start="",end=""){
 }
 function getValids(){
 	var xrpAddress = ["rUocf1ixKzTuEe34kmVhRvGqNCofY1NJzV","rGDqRw6JcoRaW5xbwd5hfiQ6C89NNU2iyu"];
-	var respone = {};
+	var response = {};
 	xrpAddress.forEach(function(a){
 		response = response.concat(getResponse(getUrl(xrpAddress)));
 	});
