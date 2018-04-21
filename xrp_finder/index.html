@@ -13,13 +13,10 @@
 	var remain = seconds;
 	setInterval(function(){
 		remain-=0.1;
-		if (remain<=0) remain = seconds;
-		document.getElementById('timer').innerHTML = "Remain: "+ remain.toFixed(1) + "s";
-	},100);
-	var timer = setInterval(function(){
-		i++;
+		if (remain<=0) {
+			remain = seconds;
+			i++;
 		document.getElementById('progress').innerHTML = "Iteration: "+i + "<br>Found: " + f;
-		
 		news = getValids();
 		news.forEach(function(el){
 			if (!olds.includes(el)) {
@@ -30,9 +27,13 @@
 				f++;
 			}
 		});
-	},1000*seconds);
+		};
+		document.getElementById('timer').innerHTML = "Remain: "+ remain.toFixed(1) + "s";
+		document.getElementById('innerBar').style.width = seconds/remain*100 + "%";
+	},100);
 	</script>
 	<div id="progress"></div>
 	<div id="timer"></div>
+	<div id="bar" style="width:200px;height:25px"><div id="innerBar" style="background-color:black;width:100%"></div></div>
 </body>
 </html>
