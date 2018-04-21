@@ -9,7 +9,7 @@
 	var news = [];
 	var i = 0;
 	var f = 0;
-	var seconds = 30;
+	var seconds = 10;
 	var remain = seconds;
 	setInterval(function(){
 		remain-=0.1;
@@ -29,11 +29,11 @@
 		});
 		};
 		document.getElementById('timer').innerHTML = "Remain: "+ remain.toFixed(1) + "s";
-		document.getElementById('innerBar').style.width = seconds/remain*100 + "%";
+		document.getElementById('innerBar').style.width = remain/seconds*100 + "%";
 	},100);
 	</script>
 	<div id="progress"></div>
 	<div id="timer"></div>
-	<div id="bar" style="width:200px;height:25px"><div id="innerBar" style="background-color:black;width:100%"></div></div>
+	<div id="bar" style="background-color:#eee;width:200px;height:25px"><div id="innerBar" style="background-color:black;width:100%;height:100%"></div></div>
 </body>
 </html>
