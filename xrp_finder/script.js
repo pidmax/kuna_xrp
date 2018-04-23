@@ -9,7 +9,7 @@ function getUrl(address,descending="true",limit="100",start="",end=""){
 	return "https://data.ripple.com/v2/accounts/"+address+"/transactions?descending="+descending+"&limit="+limit+start+end;
 }
 function getValids(){
-	var xrpAddress = ["rUocf1ixKzTuEe34kmVhRvGqNCofY1NJzV"];
+	var xrpAddress = ["rUocf1ixKzTuEe34kmVhRvGqNCofY1NJzV", "rpd6t1Z7o4ME2jgzhfBjYUwhpEcBnZufGG"];
 	var response = [];
 	xrpAddress.forEach(function(a){
 		response.push(getResponse(getUrl(a)));
