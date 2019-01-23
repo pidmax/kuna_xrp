@@ -1,7 +1,9 @@
 <html>
-<head><title>CryptoBingo</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></head>
+<head><title>CryptoBingo</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <body>
 <!-- Latest compiled and minified CSS -->
+<script src="jquery-3.3.1.min.js"></script>
 
 <style type="text/css">
 	body{
@@ -15,11 +17,28 @@
 </div>
 <div class="text-center">
 <button type="button" class="btn btn-primary btn-lg" onclick="generate()">Генерировать</button>
+<div class='text-center' style="color:white"><h3 id='hstr'></h3></div>
 <script type="text/javascript">
+	var hstr = [];
 	function generate(){
+	if (hstr.length===99)	{
+    return 0;
+}	
 	var min=1; 
-    var max=99;  
-    document.getElementById('number').innerText = (Math.random() * (+max - +min) + +min).toFixed(0);
+    var max=99;
+    let rand = (Math.random() * (+max - +min) + +min).toFixed(0);
+    if (hstr.includes(rand)) return generate(); else {
+    document.getElementById('number').innerText =  rand;
+    hstr.push(rand);
+    document.getElementById('hstr').innerText = hstr.join(" ");
+    let audio = new Audio('https://kuna.io/sounds/success.mp3');
+audio.play();
+	if (hstr.length===99)	{
+    document.getElementById('number').innerText =  "Игра окончена!";
+    let audio = new Audio('https://kuna.io/sounds/KunaCode.mp3');
+audio.play();
+}
+}	
 	}
 	document.body.onkeyup = function(e){
     if(e.keyCode == 32){
