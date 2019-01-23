@@ -1,0 +1,32 @@
+<html>
+<head><title>CryptoBingo</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></head>
+<body>
+<!-- Latest compiled and minified CSS -->
+
+<style type="text/css">
+	body{
+		background-image: url("https://blockchainhub.one/wp-content/uploads/2018/02/slider3.png")
+	}
+</style>
+<div>
+<h1 class="text-center" style="color:white">Crypto <span class="label label-success">Bingo!</span> by Blockchain Hub</h1><br>
+<div class="jumbotron text-center">
+	<h1 id="number">Добро пожаловать в крипто-бинго!</h1>
+</div>
+<div class="text-center">
+<button type="button" class="btn btn-primary btn-lg" onclick="generate()">Генерировать</button>
+<script type="text/javascript">
+	function generate(){
+	var min=1; 
+    var max=99;  
+    document.getElementById('number').innerText = (Math.random() * (+max - +min) + +min).toFixed(0);
+	}
+	document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+    	generate();
+    }
+}
+</script>
+</div>
+</body>
+</html>
